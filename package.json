@@ -1,0 +1,35 @@
+{
+  "name": "icora-api",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "postinstall": "npm run build"
+  },
+  "keywords": [],
+  "author": "Bash John",
+  "license": "ISC",
+  "description": "API for icora",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
+    "@types/compression": "^1.7.5",
+    "@types/connect-timeout": "^0.0.39",
+    "compression": "^1.7.5",
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0"
+  }
+}
