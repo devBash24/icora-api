@@ -26,7 +26,7 @@ async function main() {
     for (let start = 0; start < rows.length; start += batchSize) {
       const batch = rows.slice(start, start + batchSize);
       const values: Array<number | string | Date> = [];
-      const placeholders = batch.map((row, index) => {
+      const placeholders = batch.map((row: (typeof batch)[number], index: number) => {
         const offset = index * 5;
         values.push(row.id, row.name, row.library, row.content, row.createdAt);
         return `($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5})`;

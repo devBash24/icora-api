@@ -4,6 +4,7 @@ declare namespace NodeJS {
       NODE_ENV?: 'development' | 'production' | 'test';
       API_KEY?: string;
       DATABASE_URL?: string;
+      REDIRECT_URL?: string;
       SUPABASE_DUMP_PATH?: string;
     }
   }

@@ -21,7 +21,7 @@ async function main() {
 
   try {
     const { rows, dumpPath } = parseIconsDump();
-    const sourceLibraryList = Array.from(new Set(rows.map((row) => row.library))).sort((a, b) =>
+    const sourceLibraryList = Array.from(new Set(rows.map((row: (typeof rows)[number]) => row.library))).sort((a: string, b: string) =>
       a.localeCompare(b),
     );
     const sourceSamples = rows.slice(0, 10);
@@ -34,8 +34,8 @@ async function main() {
         ),
       ]);
 
-    const targetLibraryList = targetLibraries.rows.map((row) => row.library);
-    const sampleMismatch = sourceSamples.some((row, index) => {
+    const targetLibraryList = targetLibraries.rows.map((row: LibraryRow) => row.library);
+    const sampleMismatch = sourceSamples.some((row: (typeof sourceSamples)[number], index: number) => {
       const targetRow = targetSamples.rows[index];
       return (
         !targetRow ||

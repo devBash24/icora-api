@@ -65,8 +65,8 @@ export function parseIconsDump() {
     .replace(/^COPY public\.icons \(id, name, library, content, created_at\) FROM stdin;\r?\n/, "")
     .replace(/\r?\n\\\.$/, "")
     .split(/\r?\n/)
-    .map((line) => line.trimEnd())
-    .filter((line) => line.length > 0);
+    .map((line: string) => line.trimEnd())
+    .filter((line: string) => line.length > 0);
 
   const rows = copyPayload.map(parseDumpLine);
 

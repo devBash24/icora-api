@@ -75,7 +75,7 @@ app.get(
 
 app.get(
   "/api/icons/:library",
-  async (req: Request, res: Response): Promise<void> => {
+  async (req: Request<{ library: string }>, res: Response): Promise<void> => {
     try {
       const { library } = req.params;
       const data = await db
@@ -128,7 +128,7 @@ app.get(
 
 app.get(
   "/api/icons/all/libraries/:library",
-  async (req: Request, res: Response): Promise<void> => {
+  async (req: Request<{ library: string }>, res: Response): Promise<void> => {
     try {
       const { library } = req.params;
       const data = await db
