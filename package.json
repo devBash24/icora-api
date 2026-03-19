@@ -1,12 +1,17 @@
 {
   "name": "icora-api",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:copy-supabase": "tsx src/scripts/copySupabaseToNeon.ts",
+    "db:verify-copy": "tsx src/scripts/verifySupabaseToNeon.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "postinstall": "npm run build"
   },
   "keywords": [],
@@ -17,19 +22,24 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.10",
+    "@types/pg": "^8.18.0",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.48.1",
+    "@neondatabase/serverless": "^1.0.2",
     "@types/compression": "^1.7.5",
     "@types/connect-timeout": "^0.0.39",
     "compression": "^1.7.5",
     "connect-timeout": "^1.9.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.1",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
-    "helmet": "^8.0.0"
+    "helmet": "^8.0.0",
+    "pg": "^8.20.0"
   }
 }

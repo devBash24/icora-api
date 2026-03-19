@@ -1,7 +1,7 @@
 export interface Icon {
     id: number;
     name: string;
-    folder: string;
+    library: string;
     content: string;
     created_at: string;
   }

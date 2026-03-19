@@ -1,140 +1,206 @@
 # Icora API
 
-A RESTful API service for managing and serving icon components.
+Icora API is a RESTful service designed to manage and serve icon components efficiently.  
+It enables developers to retrieve only the icons they need, reducing dependency bloat and improving application performance.
 
-## Features
+---
 
-- Icon retrieval by folder and name
-- Folder-based icon collections
-- List all available icons
-- Automatic icon content formatting
-- Rate limiting and compression
-- CORS enabled
+## 🚀 Features
 
-## Tech Stack
+- Retrieve icons by library and name
+- Folder-based icon organization
+- Fetch entire icon collections
+- Optimized icon content formatting
+- Built-in rate limiting and caching
+- Compression-enabled responses
+- Secure API with CORS and HTTP headers
+
+---
+
+## 🧠 Architecture Overview
+
+The API follows a modular REST architecture:
+
+- **Controller Layer** – Handles request/response lifecycle
+- **Service Layer** – Business logic for icon retrieval and formatting
+- **Data Layer (Supabase)** – Stores icon metadata and content
+- **Middleware Layer** – Handles security, rate limiting, and validation
+
+Client → Express API → Service Layer → Supabase → Response
+
+---
+
+## 🛠 Tech Stack
 
 - Node.js
 - TypeScript
 - Express.js
-- Supabase
+- Neon (PostgreSQL)
 - dotenv
 
-## Prerequisites
+---
 
-- Node.js (v14 or higher)
+## 📦 Prerequisites
+
+- Node.js (v14+)
 - npm or yarn
-- Supabase account and credentials
+- Supabase project with credentials
 
-## Environment Variables
+---
 
-Create a `.env` file in the root directory with the following variables:
+## 🔐 Environment Variables
 
-```env
-PORT=3000
-NODE_ENV=development
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
-```
+Create a `.env` file:
 
-## Installation
+PORT=3000  
+NODE_ENV=development  
+DATABASE_URL
+
+---
+
+## ⚙️ Installation
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone [your-repo-url]
 
 # Install dependencies
 npm install
 
-# Build the project
+# Build project
 npm run build
 
-# Start the server
+# Start server
 npm start
 ```
 
-## Development
+---
+
+## 💻 Development
 
 ```bash
-# Run in development mode with hot-reload
 npm run dev
 ```
 
-## API Endpoints
+---
 
-### GET /
-- Health check endpoint
-- Returns: "Iconium API is running!"
+## 📡 API Endpoints
 
-### GET /api/icons
-- Query Parameters:
-  - library: string (required)
-  - name: string (required)
-- Returns: Single icon data
-- Rate Limit: 100 requests per 15 minutes
-- Cache Duration: 1 hour
+### Health Check
 
-### GET /api/icons/:library
-- Path Parameters:
-  - library: string
-- Returns: All icons in the specified library
-- Rate Limit: 100 requests per 15 minutes
-- Cache Duration: 1 hour
+GET /
 
+Returns:
+"Icora API is running!"
 
+---
 
-## Error Handling
+### Get Single Icon
 
-The API implements standard HTTP status codes:
-- 200: Success
-- 400: Bad Request
-- 404: Not Found
-- 500: Internal Server Error
+GET /api/icons?library={library}&name={name}
 
+**Query Parameters:**
 
-## Rate Limiting
+- library (string, required)
+- name (string, required)
 
-- General API endpoints: 100 requests per 15 minutes
-- Bulk operations: 50 requests per hour
+**Rate Limit:** 100 requests / 15 minutes  
+**Cache Duration:** 1 hour
 
-## Security Features
+---
 
-- Helmet security headers
-- CORS protection
-- Input validation and sanitization
+### Get Icons by Library
+
+GET /api/icons/:library
+
+**Path Parameters:**
+
+- library (string)
+
+**Rate Limit:** 100 requests / 15 minutes  
+**Cache Duration:** 1 hour
+
+---
+
+## ⚠️ Error Handling
+
+| Code | Description           |
+| ---- | --------------------- |
+| 200  | Success               |
+| 400  | Bad Request           |
+| 404  | Not Found             |
+| 429  | Too Many Requests     |
+| 500  | Internal Server Error |
+
+---
+
+## 🔒 Security Features
+
+- Helmet (secure HTTP headers)
+- CORS configuration
+- Input validation & sanitization
 - Rate limiting
-- Error handling
 
-## Performance Optimizations
+---
 
-- Response compression
+## ⚡ Performance Optimizations
+
+- Response compression (gzip)
 - Cache-Control headers
-- Database query optimization
-- Input sanitization
+- Optimized database queries
+- Reduced payload size for icons
 
-## Error Handling
+---
 
-The API implements standard HTTP status codes:
-- 200: Success
-- 400: Bad Request
-- 404: Not Found
-- 429: Too Many Requests
-- 500: Internal Server Error
+## 🧪 Future Improvements & Architecture Roadmap
 
-## Contributing
+The current implementation is designed for simplicity and rapid iteration.  
+Future improvements aim to evolve Icora into a scalable, production-grade system:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### 1. Service-Oriented Architecture
 
-## Scripts
+- Separate API, processing, and storage services
+- Introduce microservices or modular monolith structure
 
-- `npm run dev`: Start development server
-- `npm run build`: Build for production
-- `npm start`: Start production server
-- `npm run postinstall`: Automatic build after install
+### 2. CDN-Based Icon Delivery
 
-## License
+- Serve icons via CDN for faster global access
+- Reduce API load for static content
+
+### 3. Caching Layer (Redis)
+
+- Add Redis for frequently requested icons
+- Improve rate limiting performance
+
+### 4. Add Pagination
+
+- Add pagination support for large icon libraries:
+  - `limit` and `offset` query parameters
+  - Example:
+    GET /api/icons/:library?limit=50&offset=0
+
+- Improve performance when handling large datasets
+- Reduce payload size for faster responses
+- Enable frontend infinite scrolling or lazy loading
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a branch (feature/your-feature)
+3. Commit changes
+4. Push and open PR
+
+---
+
+## 📜 Scripts
+
+- npm run dev – Start development server
+- npm run build – Build project
+- npm start – Run production server
+- npm run postinstall – Auto build
+
+---
+
+## 📄 License
 
 ISC

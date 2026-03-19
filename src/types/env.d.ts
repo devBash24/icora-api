@@ -3,8 +3,7 @@ declare namespace NodeJS {
       PORT?: string;
       NODE_ENV?: 'development' | 'production' | 'test';
       API_KEY?: string;
-      SUPABASE_URL?: string;
-      SUPABASE_KEY?: string;
+      DATABASE_URL?: string;
+      SUPABASE_DUMP_PATH?: string;
     }
   }
-  
