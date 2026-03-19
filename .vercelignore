@@ -1,0 +1,8 @@
+dist
+drizzle
+node_modules
+*.backup
+*.log
+.env
+.env.local
+.env.*.local

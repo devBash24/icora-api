@@ -23,10 +23,10 @@ The API follows a modular REST architecture:
 
 - **Controller Layer** – Handles request/response lifecycle
 - **Service Layer** – Business logic for icon retrieval and formatting
-- **Data Layer (Supabase)** – Stores icon metadata and content
+- **Data Layer (NEON DB)** – Stores icon metadata and content
 - **Middleware Layer** – Handles security, rate limiting, and validation
 
-Client → Express API → Service Layer → Supabase → Response
+Client → Express API → Service Layer → NEON DB → Response
 
 ---
 
@@ -35,7 +35,7 @@ Client → Express API → Service Layer → Supabase → Response
 - Node.js
 - TypeScript
 - Express.js
-- Neon (PostgreSQL)
+- NEON DB (PostgreSQL)
 - dotenv
 
 ---
@@ -44,7 +44,7 @@ Client → Express API → Service Layer → Supabase → Response
 
 - Node.js (v14+)
 - npm or yarn
-- Supabase project with credentials
+- NEON DB project with credentials
 
 ---
 
@@ -52,7 +52,7 @@ Client → Express API → Service Layer → Supabase → Response
 
 Create a `.env` file:
 
-PORT=3000  
+PORT=4000  
 NODE_ENV=development  
 DATABASE_URL
 
@@ -91,7 +91,7 @@ npm run dev
 GET /
 
 Returns:
-"Icora API is running!"
+"Iconium API is running!"
 
 ---
 
@@ -122,7 +122,7 @@ GET /api/icons/:library
 
 ---
 
-## ⚠️ Error Handling
+## Error Handling
 
 | Code | Description           |
 | ---- | --------------------- |
@@ -134,7 +134,7 @@ GET /api/icons/:library
 
 ---
 
-## 🔒 Security Features
+## Security Features
 
 - Helmet (secure HTTP headers)
 - CORS configuration
@@ -143,7 +143,7 @@ GET /api/icons/:library
 
 ---
 
-## ⚡ Performance Optimizations
+## Performance Optimizations
 
 - Response compression (gzip)
 - Cache-Control headers
@@ -152,7 +152,7 @@ GET /api/icons/:library
 
 ---
 
-## 🧪 Future Improvements & Architecture Roadmap
+## Future Improvements & Architecture Roadmap
 
 The current implementation is designed for simplicity and rapid iteration.  
 Future improvements aim to evolve Icora into a scalable, production-grade system:
@@ -172,7 +172,12 @@ Future improvements aim to evolve Icora into a scalable, production-grade system
 - Add Redis for frequently requested icons
 - Improve rate limiting performance
 
-### 4. Add Pagination
+### 4. Improve CLI Integration
+
+Example:
+icora add home user settings
+
+### 5. Pagination & Query Optimization
 
 - Add pagination support for large icon libraries:
   - `limit` and `offset` query parameters
@@ -182,6 +187,13 @@ Future improvements aim to evolve Icora into a scalable, production-grade system
 - Improve performance when handling large datasets
 - Reduce payload size for faster responses
 - Enable frontend infinite scrolling or lazy loading
+
+Future enhancements:
+
+- Cursor-based pagination for better scalability
+- Filtering and sorting (e.g., by popularity, category)
+
+---
 
 ## 🤝 Contributing
 
